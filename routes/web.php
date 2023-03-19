@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Support\Admin\Index;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +18,11 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get('/', Index::class)->name('support.index');
+// صفحه اصلی ادمین
+
+Route::get('/', \App\Http\Livewire\Support\Admin\Index::class)->name('support.index');
+
+// کاربران
+
+Route::get('/users', \App\Http\Livewire\Support\Users\Index::class)->name('users.index');
+Route::get('/users/create', \App\Http\Livewire\Support\Users\Create::class)->name('users.create');

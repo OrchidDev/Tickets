@@ -17,15 +17,12 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                صفحه اصلی
-            </div>
-            <!-- /.content-header -->
 
             <!-- Main content -->
             <div class="content">
-                @yield('content')
+                <div class="p-5">
+                    @yield('content')
+                </div>
             </div>
             <!-- /.content -->
         </div>
