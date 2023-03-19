@@ -1,6 +1,7 @@
 <?php
 
-
+use App\Http\Livewire\Support\Users\Index;
+use App\Http\Livewire\Support\Users\Create;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +25,5 @@ Route::get('/', \App\Http\Livewire\Support\Admin\Index::class)->name('support.in
 
 // کاربران
 
-Route::get('/users', \App\Http\Livewire\Support\Users\Index::class)->name('users.index');
-Route::get('/users/create', \App\Http\Livewire\Support\Users\Create::class)->name('users.create');
+Route::get('/users', Index::class)->name('users.index');
+Route::get('/users/create', Create::class)->name('users.create');
