@@ -95,6 +95,8 @@ class Create extends Component
                 'sing' =>$this->uploadImage2()
             ]);
         }
+
+        $this->dispatchBrowserEvent('toastr:success', ['message' => 'کاربر مورد نظر با موفقیت ایجاد شد']);
         return redirect()->route('users.index');
     }
 
