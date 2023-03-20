@@ -9,45 +9,45 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="Input1" class="form-label">نام و نام خانوادگی</label>
-                                <input type="text" class="form-control" id="Input1" wire:model="users.name">
+                                <input type="text" class="form-control" id="Input1" wire:model.defer="users.name">
                                 @error('users.name') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="Input2" class="form-label">نام کاربری</label>
-                                <input type="text" class="form-control" id="Input2" wire:model="users.username">
+                                <input type="text" class="form-control" id="Input2" wire:model.defer="users.username">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="Input3" class="form-label">ایمیل</label>
-                                <input type="email" class="form-control" id="Input3" wire:model="users.email">
+                                <input type="email" class="form-control" id="Input3" wire:model.defer="users.email">
                                 @error('users.email') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="Input4" class="form-label">سمت کاربری</label>
-                                <input type="text" class="form-control" id="Input4" wire:model="users.position">
+                                <input type="text" class="form-control" id="Input4" wire:model.defer="users.position">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="Input5" class="form-label">شماره موبایل</label>
-                                <input type="text" class="form-control" id="Input5" wire:model="users.mobile">
+                                <input type="text" class="form-control" id="Input5" wire:model.defer="users.mobile">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="Input6" class="form-label">رمز عبور</label>
-                                <input type="password" class="form-control" id="Input6" wire:model="">
+                                <input type="password" class="form-control" id="Input6" wire:model.defer="">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="select1">جنسیت</label>
-                                <select class="form-control" id="select1" wire:model="users.gender">
+                                <select class="form-control" id="select1" wire:model.defer="users.gender">
                                     <option selected>انتخاب کنید ...</option>
                                     <option value="1">آقا</option>
                                     <option value="0">خانم</option>
@@ -57,7 +57,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="select2">گروه سازمانی</label>
-                                <select class="form-control" id="select2" wire:model="users.group_id">
+                                <select class="form-control" id="select2" wire:model.defer="users.group_id">
                                     <option selected>انتخاب کنید ...</option>
                                     <option value="1">مدیران اصلی</option>
                                     <option value="2">مدیران</option>
@@ -71,7 +71,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="select3">نقش کاربری</label>
-                                <select class="form-control" id="select3" wire:model="users.role_id">
+                                <select class="form-control" id="select3" wire:model.defer="users.role_id">
                                     <option selected>انتخاب کنید ...</option>
                                     <option value="1">مدیر سایت</option>
                                     <option value="2">پشتیبان سایت</option>
@@ -87,16 +87,18 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="checkbox1">ایمیل</label>
-                                    <input type="checkbox" id="checkbox1" wire:model="users.email_conn">
+                                    <input type="checkbox" id="checkbox1" wire:model.defer="users.email_conn">
                                 </div>
                                 <div class="col">
                                     <label for="checkbox2">موبایل</label>
-                                    <input type="checkbox" id="checkbox2" wire:model="users.email_conn">
+                                    <input type="checkbox" id="checkbox2" wire:model.defer="users.email_conn">
                                 </div>
                                 <div class="col">
                                     <div class="col">
-                                        <label for="checkbox3">دریافت پیامک</label>
-                                        <input type="checkbox" id="checkbox3" wire:model="users.sms">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" wire:model.defer="users.sms" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                            <label class="form-check-label" for="flexSwitchCheckDefault">دریافت پیامک</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -106,16 +108,16 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="checkbox1">شروع نامه</label>
-                                    <input type="checkbox" id="checkbox1">
+                                    <input type="checkbox" id="checkbox1" wire:model.defer="users.task_start">
                                 </div>
                                 <div class="col">
                                     <label for="checkbox2">بررسی اولیه نامه</label>
-                                    <input type="checkbox" id="checkbox2">
+                                    <input type="checkbox" id="checkbox2" wire:model.defer="users.task_review">
                                 </div>
                                 <div class="col">
                                     <div class="col">
                                         <label for="checkbox3">بایگانی نامه</label>
-                                        <input type="checkbox" id="checkbox3">
+                                        <input type="checkbox" id="checkbox3" wire:model.defer="users.task_comp">
                                     </div>
                                 </div>
                             </div>
@@ -125,28 +127,28 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="checkbox1">شروع وظیفه</label>
-                                    <input type="checkbox" id="checkbox1">
+                                    <input type="checkbox" id="checkbox1" wire:model.defer="users.manage_start">
                                 </div>
                                 <div class="col">
                                     <label for="checkbox2">بررسی اولیه وظیفه</label>
-                                    <input type="checkbox" id="checkbox2">
+                                    <input type="checkbox" id="checkbox2" wire:model.defer="users.manage_review">
                                 </div>
                                 <div class="col">
                                     <div class="col">
                                         <label for="checkbox3">تکمیل وظیفه</label>
-                                        <input type="checkbox" id="checkbox3">
+                                        <input type="checkbox" id="checkbox3" wire:model.defer="users.manage_comp">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="col">
                                         <label for="checkbox4">خاتمه وظیفه</label>
-                                        <input type="checkbox" id="checkbox4">
+                                        <input type="checkbox" id="checkbox4" wire:model.defer="users.manage_end">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="col">
                                         <label for="checkbox5">رد شده</label>
-                                        <input type="checkbox" id="checkbox5">
+                                        <input type="checkbox" id="checkbox5" wire:model.defer="users.manage_cancel">
                                     </div>
                                 </div>
                             </div>

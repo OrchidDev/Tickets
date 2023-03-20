@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Support\Users;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -10,6 +11,8 @@ class Create extends Component
 {
     use WithFileUploads;
     public User $users;
+    public $pic;
+    public $sing;
     public function render()
     {
         return view('livewire.support.users.create')
@@ -54,13 +57,57 @@ class Create extends Component
     public function storeUser()
     {
         $this->validate();
+        $users = User::create([
+            'name' => $this->users->name,
+            'username' => $this->users->username,
+            'email' => $this->users->email,
+            'group_id' => $this->users->group_id,
+            'mobile' => $this->users->mobile,
+            'gender' => $this->users->gender,
+            'role_id' => $this->users->role_id,
+            'position' => $this->users->position,
+            'is_admin' => 0,
+            'task_start' => $this->users->task_start,
+            'task_review' => $this->users->task_review,
+            'task_comp' => $this->users->task_comp,
+            'manage_start' => $this->users->manage_start,
+            'manage_review' => $this->users->manage_review,
+            'manage_comp' => $this->users->manage_comp,
+            'manage_end' => $this->users->manage_end,
+            'manage_cancel' => $this->users->manage_cancel,
+            'email_conn' => $this->users->email_connection,
+            'mobile_conn' => $this->users->mobile_connection,
+            'password' => Hash::make($this->users->password2),
+        ]);
 
+        if ($this->users->active_sms == true) {
+            $users->update([
+                'active_sms'=>1
+            ]);
+        }
+        if ($this->pic) {
+            $users->update([
+                'pic' => $this->uploadImage()
+            ]);
+        }
+        if ($this->sing) {
+            $users->update([
+                'sing' =>$this->uploadImage2()
+            ]);
+        }
+        return redirect()->route('users.index');
+    }
 
-
-//         $this->users->save();
-//         $this->users=new User();
-
-        dd($this->validate());
-//        $this->users->save();
+    public function uploadImage()
+    {
+        $year = now()->year; $month = now()->month; $directory = "users/$year/$month";
+        $name= $this->pic->getClientOriginalName(); $this->pic->storeAs($directory,$name);
+        return "$directory/$name";
+    }
+    public function uploadImage2()
+    {
+        $year = now()->year; $month = now()->month; $directory = "sign/$year/$month";
+        $name= $this->sign->getClientOriginalName(); $this->sign->storeAs($directory,$name);
+        return "$directory/$name";
     }
 }
