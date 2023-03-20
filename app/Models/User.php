@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +21,26 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+        'is_admin',
+        'sms',
+        'email_conn',
+        'mobile_conn',
+        'group_id',
+        'mobile',
+        'sing',
+        'gender',
+        'role_id',
+        'pic',
+        'position',
+        'task_start',
+        'task_review',
+        'task_comp',
+        'manage_start',
+        'manage_review',
+        'manage_comp',
+        'manage_end',
+        'manage_cancel'
     ];
 
     /**

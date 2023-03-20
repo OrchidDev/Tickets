@@ -7,6 +7,7 @@
     <title>سیستم پشتیبانی</title>
 
     @include('livewire.support.admin.style')
+    @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -30,5 +31,6 @@
         @include('livewire.support.admin.footer')
     </div>
     @include('livewire.support.admin.javascript')
+@livewireScripts
 </body>
 </html>
