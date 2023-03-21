@@ -23,3 +23,5 @@
         "positionClass": "toast-top-left",
     };
 </script>
+@yield('script')
+

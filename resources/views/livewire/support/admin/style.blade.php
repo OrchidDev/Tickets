@@ -8,3 +8,5 @@
 <link rel="stylesheet" href="{{asset('css/custom-style.css')}}">
 <!-- Alert ToastrCSS -->
 <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+<!-- StyleCSS -->
+<link rel="stylesheet" href="{{asset('css/style.css')}}">

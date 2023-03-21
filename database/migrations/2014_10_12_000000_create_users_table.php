@@ -37,7 +37,9 @@ return new class extends Migration
             $table->string('manage_cancel')->nullable();
             $table->string('pic1')->nullable();
             $table->string('pic2')->nullable();
+
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

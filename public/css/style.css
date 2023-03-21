@@ -1,0 +1,7 @@
+.preview{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e8e8e8;
+}
