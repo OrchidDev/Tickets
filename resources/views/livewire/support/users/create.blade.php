@@ -155,11 +155,25 @@
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="file1">عکس کاربر</label>
-                            <input class="form-control" type="file" id="file1" wire:model.lazy="users.pic">
+                            <input class="form-control" type="file" id="file1" wire:model.lazy="users.pic1">
+                            @error('pic1')
+                            <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+
+
+                            <div wire:loading wire:target="pic1" wire:key="pic1"><i class="fa fa-spinner fa-spin mt-2 ml-2"></i> در حال بارگزاری ...</div>
+
+
+                            {{-- ImagePreview --}}
+
+
+                            @if ($pic1)
+                                <img src="{{ $pic1->temporaryUrl() }}" width="100" alt="" class="mt-2">
+                            @endif
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="file2">امضای کاربر</label>
-                            <input class="form-control" type="file" id="file2" wire:model.lazy="users.sing">
+                            <input class="form-control" type="file" id="file2" wire:model.lazy="users.pic2">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">ثبت کاربر</button>

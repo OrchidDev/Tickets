@@ -35,8 +35,8 @@ return new class extends Migration
             $table->string('manage_comp')->nullable();
             $table->string('manage_end')->nullable();
             $table->string('manage_cancel')->nullable();
-            $table->string('pic')->nullable();
-            $table->string('sing')->nullable();
+            $table->string('pic1')->nullable();
+            $table->string('pic2')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

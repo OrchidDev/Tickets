@@ -11,8 +11,8 @@ class Create extends Component
 {
     use WithFileUploads;
     public User $users;
-    public $pic;
-    public $sing;
+    public $pic1;
+    public $pic2;
     public function render()
     {
         return view('livewire.support.users.create')
@@ -34,11 +34,11 @@ class Create extends Component
         'users.mobile_conn' => 'nullable',
         'users.group_id' => 'nullable',
         'users.mobile' => 'nullable',
-        'users.sing' => 'nullable',
+        'users.pic2' => 'required',
         'users.gender' => 'nullable',
         'users.role_id' => 'nullable',
         'users.position' => 'nullable',
-        'users.pic' => 'nullable',
+        'users.pic1' => 'required',
         'users.task_start' => 'nullable',
         'users.task_review' => 'nullable',
         'users.task_comp' => 'nullable',
@@ -85,14 +85,14 @@ class Create extends Component
                 'active_sms'=>1
             ]);
         }
-        if ($this->pic) {
+        if ($this->pic1) {
             $users->update([
-                'pic' => $this->uploadImage()
+                'pic1' => $this->uploadImage()
             ]);
         }
-        if ($this->sing) {
+        if ($this->pic2) {
             $users->update([
-                'sing' =>$this->uploadImage2()
+                'pic2' =>$this->uploadImage2()
             ]);
         }
 
@@ -103,13 +103,13 @@ class Create extends Component
     public function uploadImage()
     {
         $year = now()->year; $month = now()->month; $directory = "users/$year/$month";
-        $name= $this->pic->getClientOriginalName(); $this->pic->storeAs($directory,$name);
+        $name= $this->pic1->getClientOriginalName(); $this->pic1->storeAs($directory,$name);
         return "$directory/$name";
     }
     public function uploadImage2()
     {
-        $year = now()->year; $month = now()->month; $directory = "sign/$year/$month";
-        $name= $this->sign->getClientOriginalName(); $this->sign->storeAs($directory,$name);
+        $year = now()->year; $month = now()->month; $directory = "sing/$year/$month";
+        $name= $this->pic2->getClientOriginalName(); $this->pic2->storeAs($directory,$name);
         return "$directory/$name";
     }
 }
