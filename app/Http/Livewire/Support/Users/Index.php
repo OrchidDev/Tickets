@@ -29,14 +29,13 @@ class Index extends Component
     public function render()
     {
         $users = $this->readyToLoad ? User::where('name','LIKE',"%{$this->search}%")->
-            orWhere('lname','LIKE',"%{$this->search}%")->
-            orWhere('username','LIKE',"%{$this->search}%")->
-            orWhere('email','LIKE',"%{$this->search}%")->
-            orWhere('mobile','LIKE',"%{$this->search}%")->
-            orWhere('position','LIKE',"%{$this->search}%")->
-            orWhere('id',$this->search)->latest()->paginate(15) : [];
-        return view('livewire.support.users.index', compact('users'));
+        orWhere('name','LIKE',"%{$this->search}%")->
+        orWhere('username','LIKE',"%{$this->search}%")->
+        orWhere('email','LIKE',"%{$this->search}%")->
+        orWhere('mobile','LIKE',"%{$this->search}%")->
+        orWhere('position','LIKE',"%{$this->search}%")->
+        orWhere('id',$this->search)->latest()->paginate(15) : [];
+        return view('livewire.support.users.index', compact('users'))->extends('layouts.app')
+            ->section('content');
     }
-
-
 }

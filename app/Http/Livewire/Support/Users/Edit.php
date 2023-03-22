@@ -7,27 +7,25 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Create extends Component
+class Edit extends Component
 {
     use WithFileUploads;
     public User $users;
     public $pic1;
     public $pic2;
+
     public function render()
     {
-        return view('livewire.support.users.create')
+        $user = $this->users;
+        return view('livewire.support.users.edit', compact('user'))
             ->extends('layouts.app')
             ->section('content');
-    }
-    public function mount(){
-        $this->users= new User();
     }
 
     protected $rules =[
         'users.name' => 'nullable',
         'users.username' => 'nullable',
         'users.email' => 'nullable',
-        'users.password2' => 'nullable',
         'users.is_admin' => 'nullable',
         'users.sms' => 'nullable',
         'users.email_conn' => 'nullable',
@@ -54,49 +52,33 @@ class Create extends Component
         $this->validateOnly($name);
     }
 
-    public function storeUser()
+    public function mount(User $user) {
+        $this->users = $user;
+    }
+
+    public function updateUser()
     {
         $this->validate();
-        $users = User::create([
-            'name' => $this->users->name,
-            'username' => $this->users->username,
-            'email' => $this->users->email,
-            'group_id' => $this->users->group_id,
-            'mobile' => $this->users->mobile,
-            'gender' => $this->users->gender,
-            'role_id' => $this->users->role_id,
-            'position' => $this->users->position,
-            'is_admin' => 0,
-            'task_start' => $this->users->task_start,
-            'task_review' => $this->users->task_review,
-            'task_comp' => $this->users->task_comp,
-            'manage_start' => $this->users->manage_start,
-            'manage_review' => $this->users->manage_review,
-            'manage_comp' => $this->users->manage_comp,
-            'manage_end' => $this->users->manage_end,
-            'manage_cancel' => $this->users->manage_cancel,
-            'email_conn' => $this->users->email_connection,
-            'mobile_conn' => $this->users->mobile_connection,
-            'password' => Hash::make($this->users->password2),
-        ]);
 
         if ($this->users->active_sms == true) {
-            $users->update([
+            $this->users->update([
                 'active_sms'=>1
             ]);
         }
+
         if ($this->pic1) {
-            $users->update([
+            $this->users->update([
                 'pic1' => $this->uploadImage()
             ]);
         }
         if ($this->pic2) {
-            $users->update([
+            $this->users->update([
                 'pic2' =>$this->uploadImage2()
             ]);
         }
 
-        $this->dispatchBrowserEvent('toastr:success', ['message' => 'کاربر مورد نظر با موفقیت ایجاد شد']);
+        $this->users->update($this->validate());
+        $this->dispatchBrowserEvent('toastr:success', ['message' => 'کاربر مورد نظر با موفقیت به روز شد']);
         return redirect()->route('users.index');
     }
 
@@ -108,7 +90,7 @@ class Create extends Component
     }
     public function uploadImage2()
     {
-        $year = now()->year; $month = now()->month; $directory = "sing/$year/$month";
+        $year = now()->year; $month = now()->month; $directory = "sign/$year/$month";
         $name= $this->pic2->getClientOriginalName(); $this->pic2->storeAs($directory,$name);
         return "$directory/$name";
     }
