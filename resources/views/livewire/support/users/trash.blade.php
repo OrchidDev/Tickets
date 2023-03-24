@@ -3,7 +3,6 @@
     <div class="card" wire:init="loadUser">
         <div class="card-body">
             <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">افزودن کاربر جدید</a>
-
             <table class="table table-bordered">
                 <tr>
                     <th style="width: 10px">شناسه </th>
