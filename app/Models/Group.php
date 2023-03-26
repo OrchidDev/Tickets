@@ -14,4 +14,9 @@ class Group extends Model
         'type',
         'logo'
     ];
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class,'type','id');
+    }
 }

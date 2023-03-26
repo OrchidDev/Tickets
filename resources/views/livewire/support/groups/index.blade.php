@@ -1,11 +1,11 @@
 
 <div class="container">
-    <div class="card">
+    <div class="card" wire:init="loadGroup">
         <div class="card-body">
-            <a href="" class="btn btn-primary">افزودن گروه جدید</a>
+            <a href="{{ route('groups.create') }}" class="btn btn-primary">افزودن گروه جدید</a>
             <div class="mb-3 col-4 float-end" style="margin-top: -25px;">
                 <label for="search"></label>
-                <input type="text" class="form-control" id="search" placeholder="جستجوی گروه ها ...">
+                <input type="text" class="form-control" wire:model.debounce.1000="search" id="search" placeholder="جستجوی گروه ها ...">
             </div>
             <table class="table table-bordered">
                 <tr>
@@ -14,17 +14,24 @@
                     <th>سر گروه</th>
                     <th>عملیات</th>
                 </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>مدیران</td>
-                        <td>برنامه نویس</td>
-                        <td class="text-center" style="width: 200px;">
-                            <a href="" class="btn btn-secondary btn-sm">ویرایش</a>
-                            <button class="btn btn-danger btn-sm">حذف</button>
-                        </td>
-                    </tr>
-
+                @if($readyToLoad)
+                    @foreach($groups as $group)
+                        <tr>
+                            <td>{{$group->id}}</td>
+                            <td>{{$group->name}}</td>
+                            <td>
+                                @if ($group->type ==0)
+                                    --
+                                @else
+                                    {{$group->group->name}}
+                                @endif
+                            </td>
+                            <td class="text-center" style="width: 200px;">
+                                <button class="btn btn-danger btn-sm" wire:click="deleteGroup({{$group->id}})">حذف</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </table>
         </div>
     </div>
