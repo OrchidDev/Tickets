@@ -20,11 +20,7 @@
                             <td>{{$group->id}}</td>
                             <td>{{$group->name}}</td>
                             <td>
-                                @if ($group->type ==0)
-                                    --
-                                @else
-                                    {{$group->group->name}}
-                                @endif
+                                {{$group->group->name ?? '--'}}
                             </td>
                             <td class="text-center" style="width: 200px;">
                                 <button class="btn btn-danger btn-sm" wire:click="deleteGroup({{$group->id}})">حذف</button>

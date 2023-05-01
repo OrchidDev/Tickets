@@ -31,8 +31,8 @@ class Index extends Component
 
     public function deleteGroup($id)
     {
-        $groups = Group::find($id);
-        $groups->delete();
+        $group = Group::find($id);
+        $group->delete();
         $this->dispatchBrowserEvent('toastr:success', ['message' => 'گروه با موفقیت حذف شد']);
     }
 }
