@@ -18,3 +18,7 @@ Route::get('/users/trash', \App\Http\Livewire\Support\Users\Trash::class)->name(
 
 Route::get('/groups', \App\Http\Livewire\Support\Groups\Index::class)->name('groups.index');
 Route::get('/groups/create', \App\Http\Livewire\Support\Groups\Create::class)->name('groups.create');
+
+// مقام ها
+
+Route::get('/roles', \App\Http\Livewire\Support\Role\Index::class)->name('role.index');
