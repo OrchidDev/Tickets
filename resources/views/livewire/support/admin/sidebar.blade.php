@@ -98,6 +98,12 @@
                                     <p>لیست مقام ها</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('role.create') }}" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>افزودن مقام</p>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>

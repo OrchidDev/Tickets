@@ -22,3 +22,4 @@ Route::get('/groups/create', \App\Http\Livewire\Support\Groups\Create::class)->n
 // مقام ها
 
 Route::get('/roles', \App\Http\Livewire\Support\Role\Index::class)->name('role.index');
+Route::get('/roles/create', \App\Http\Livewire\Support\Role\Create::class)->name('role.create');
