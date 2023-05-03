@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'username',
         'is_admin',
+        'is_staff',
         'sms',
         'email_conn',
         'mobile_conn',
@@ -62,4 +63,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+
+    public function isStaff()
+    {
+        return $this->is_staff;
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasPermission($permission)
+    {
+        return $this->permissions->contains('value',$permission->value) || $this->hasRole($permission->role);
+    }
+
+    public function hasRole($roles)
+    {
+        return !! $roles->intersect($this->roles)->all();
+    }
 }

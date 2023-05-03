@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('mobile_conn')->nullable();
             $table->string('sms')->nullable();
             $table->string('is_admin')->nullable();
+            $table->string('is_staff')->nullable();
             $table->string('task_start')->nullable();
             $table->string('task_review')->nullable();
             $table->string('task_comp')->nullable();
