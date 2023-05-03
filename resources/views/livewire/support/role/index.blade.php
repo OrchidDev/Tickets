@@ -20,7 +20,7 @@
                             <td>{{$role->id}}</td>
                             <td>{{$role->title}}</td>
                             <td>{{$role->value}}</td>
-                            <td>{{$role->created_at}}</td>
+                            <td>{{$role->getCreateAtShamsi()}}</td>
                             <td class="text-center" style="width: 200px;">
                                 <button class="btn btn-danger btn-sm" wire:click="deleteRole({{$role->id}})">حذف</button>
                             </td>
