@@ -23,3 +23,9 @@ Route::get('/groups/create', \App\Http\Livewire\Support\Groups\Create::class)->n
 
 Route::get('/roles', \App\Http\Livewire\Support\Role\Index::class)->name('role.index');
 Route::get('/roles/create', \App\Http\Livewire\Support\Role\Create::class)->name('role.create');
+
+// دسترسی ها
+
+Route::get('/permissions', \App\Http\Livewire\Support\Permission\Index::class)->name('permissions.index');
+Route::get('/permissions/create', \App\Http\Livewire\Support\Permission\Create::class)->name('permissions.create');
+
