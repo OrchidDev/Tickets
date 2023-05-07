@@ -38,7 +38,7 @@ class Create extends Component
             'value' => $this->permission->value,
         ]);
 
-        $this->dispatchBrowserEvent('toastr:success', ['message' => 'مقام با موفقیت ایجاد شد']);
+        $this->dispatchBrowserEvent('toastr:success', ['message' => 'دسترسی با موفقیت ایجاد شد']);
         return redirect()->route('permissions.index');
     }
 }

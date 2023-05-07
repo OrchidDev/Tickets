@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Support\Permission;
 
 use App\Models\Permission;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Index extends Component
@@ -23,6 +24,12 @@ class Index extends Component
         $permission->delete();
         $this->dispatchBrowserEvent('toastr:success', ['message' => 'مقام با موفقیت حذف شد']);
     }
+    public function deletePermissionRole($id)
+    {
+        DB::table('permission_role')->where('id',$id)->delete();
+        $this->dispatchBrowserEvent('toastr:success', ['message' => ' با موفقیت حذف شد']);
+    }
+
     public function render()
     {
         $permissions = $this->readyToLoad ? Permission::where('title','LIKE',"%{$this->search}%")->

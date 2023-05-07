@@ -106,21 +106,6 @@
                             </li>
                         </ul>
 
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('permissions.index') }}" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>لیست دسترسی ها</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('permissions.create') }}" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>افزودن دسترسی</p>
-                                </a>
-                            </li>
-                        </ul>
-
                     </li>
                 </ul>
 

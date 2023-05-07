@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('permission_role', function (Blueprint $table) {
+            $table->string('id')->autoIncrement();
             $table->unsignedBigInteger('permission_id');
             $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('CASCADE');
             $table->unsignedBigInteger('role_id');
