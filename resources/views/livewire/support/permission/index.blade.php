@@ -13,10 +13,12 @@
                             @endphp
                             @foreach($permissions_roles as $permission_role)
                                 @foreach(\App\Models\Permission::where('id',$permission_role->permission_id)->get() as $per)
-                                    <div class="row">
-                                        <div class="col-md-9">{{$per->value}}</div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-danger btn-sm" wire:click="deletePermissionRole({{$permission_role->id}})">حذف</button>
+                                    <div class="mb-2">
+                                        <div class="row">
+                                            <div class="col-md-9">{{$per->value}}</div>
+                                            <div class="col-md-3">
+                                                <button class="btn btn-danger btn-sm" wire:click="deletePermissionRole({{$permission_role->id}})">حذف</button>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -46,7 +48,27 @@
                         <tr>
                             <td>{{$permission->id}}</td>
                             <td>{{$permission->title}}</td>
-                            <td>{{$permission->value}}</td>
+                            <td>
+                                @foreach(\App\Models\Role::all() as $role)
+                                    <span class="badge
+                                    @if($role->id == 1)
+                                    text-bg-primary
+                                        @elseif($role->id == 2)
+                                        text-bg-secondary
+                                        @elseif($role->id == 3)
+                                        text-bg-success
+                                        @elseif($role->id == 4)
+                                        text-bg-danger
+                                        @elseif($role->id == 5)
+                                        text-bg-warning
+                                        @elseif($role->id == 6)
+                                        text-bg-info
+                                        @elseif($role->id == 7)
+                                        text-bg-dark
+                                    @endif
+                                    ">{{$role->value}}</span>
+                                @endforeach
+                            </td>
                             <td>{{$permission->getCreateAtShamsi()}}</td>
                             <td class="text-center" style="width: 200px;">
                                 <button class="btn btn-danger btn-sm" wire:click="deletePermission({{$permission->id}})">حذف</button>
