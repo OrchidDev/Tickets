@@ -30,6 +30,28 @@ class Index extends Component
         $this->dispatchBrowserEvent('toastr:success', ['message' => ' با موفقیت حذف شد']);
     }
 
+    public function addRoleForm($data)
+    {
+        $id = [];
+        $permission = $data[0];
+        $role = $data[1];
+
+        if (DB::table('permission_role')
+            ->where('id','=',$id)
+            ->where('role_id','=',$role)
+            ->where('permission_id','=',$permission)->first()){
+            $this->dispatchBrowserEvent('toastr:error', ['message' => 'مشکلی در ایجاد کردن بوجود آمد!']);
+        }else{
+            DB::table('permission_role')->
+            insert([
+                'id' => $id,
+                'permission_id' =>$permission,
+                'role_id' =>$role
+            ]);
+            $this->dispatchBrowserEvent('toastr:success', ['message' => 'با موفقیت ایجاد شد']);
+        }
+    }
+
     public function render()
     {
         $permissions = $this->readyToLoad ? Permission::where('title','LIKE',"%{$this->search}%")->

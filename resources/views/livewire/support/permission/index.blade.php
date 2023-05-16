@@ -49,24 +49,24 @@
                             <td>{{$permission->id}}</td>
                             <td>{{$permission->title}}</td>
                             <td>
-                                @foreach(\App\Models\Role::all() as $role)
-                                    <span class="badge
+                                @foreach(\App\Models\Role::get() as $role)
+                                    <button wire:click="addRoleForm([{{$permission->id}},{{$role->id}}])" class="btn
                                     @if($role->id == 1)
-                                    text-bg-primary
+                                    btn-primary
                                         @elseif($role->id == 2)
-                                        text-bg-secondary
+                                        btn-secondary
                                         @elseif($role->id == 3)
-                                        text-bg-success
+                                        btn-success
                                         @elseif($role->id == 4)
-                                        text-bg-danger
+                                        btn-danger
                                         @elseif($role->id == 5)
-                                        text-bg-warning
+                                        btn-warning
                                         @elseif($role->id == 6)
-                                        text-bg-info
+                                        btn-info
                                         @elseif($role->id == 7)
-                                        text-bg-dark
+                                        btn-dark
                                     @endif
-                                    ">{{$role->value}}</span>
+                                    btn-sm">{{$role->value}}</button>
                                 @endforeach
                             </td>
                             <td>{{$permission->getCreateAtShamsi()}}</td>
